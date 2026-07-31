@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Recipe</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            height: 65px;
+            background-color: #333333;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            margin-right: 35px;
+            font-weight: 500;
+        }
+
+        .navbar a:hover {
+            color: #dddddd;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            padding: 40px 30px;
+        }
+
+        /* Recipe Content */
+        .recipe-container {
+            width: 700px;
+        }
+
+        /* Recipe Name */
+        .recipe-name {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #222222;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Ingredients and Process Boxes */
+        .recipe-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .box-title {
+            color: #b0b0b0;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 180px;
+            border: none;
+            outline: none;
+            resize: vertical;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333333;
+        }
+
+        textarea::placeholder {
+            color: #b0b0b0;
+        }
+
+        /* Save Button */
+        .save-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: #333333;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background-color: #222222;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="/">HOME</a>
+        <a href="/saved/">SAVED</a>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="main-container">
+
+    <div class="recipe-container">
+
+        <!-- Recipe Name -->
+        <div class="recipe-name" id="recipeName">
+            {{ recipe_name }}
+        </div>
+
+
+        <!-- Form starts here -->
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input type="hidden" name="recipe_name" value="{{ recipe_name }}">
+
+
+            <!-- Ingredients -->
+            <div class="recipe-box">
+
+                <div class="box-title">
+                    Ingredients
+                </div>
+
+                <textarea
+                    name="ingredients"
+                    id="ingredients"
+                    placeholder="1) Ingredient&#10;2) Ingredient&#10;3) Ingredient"
+                ></textarea>
+
+            </div>
+
+
+            <!-- Process -->
+            <div class="recipe-box">
+
+                <div class="box-title">
+                    Process
+                </div>
+
+                <textarea
+                    name="process"
+                    id="process"
+                    placeholder="Enter the process of making your recipe..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- Save button goes here -->
+            <button type="submit" class="save-button">
+                SAVE RECIPE
+            </button>
+
+        </form>
+
+    </div>
+
+</main>
